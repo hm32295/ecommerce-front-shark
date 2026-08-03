@@ -1,0 +1,8 @@
+.image{
+  border-radius: 50px!important;
+  object-fit: contain;
+  width: 420px;
+  padding: 30px;
+  height: 420px;
+  background-color: #F0EEED;
+}

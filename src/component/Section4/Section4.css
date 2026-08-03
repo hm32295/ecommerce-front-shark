@@ -1,0 +1,116 @@
+.myimgs{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 90%;
+    height: 120vh;
+    background-color: #F0F0F0;
+    border-radius: 40px;
+    margin-top: 50px;
+    margin: auto;
+    padding-left: 50px;
+}
+
+@media(max-width: 576px){
+.myimgs{
+        width: 95%;
+        padding-left: 10px;
+        height: 150vh;
+    }
+}
+
+.hgfd{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 90%;
+    height: 120vh;
+}
+
+@media(max-width: 576px){
+.hgfd{
+        width: 90%;
+        flex-direction: column!important;
+        height: 100vh;
+        gap: 10px;
+    }
+}
+
+
+.myimgs .div1{
+    display: flex;
+    gap: 20px;
+    width:100% ;
+    height: 70vh;
+    padding-top: 50px;
+}
+
+@media(max-width: 576px){
+.myimgs .div1{
+        flex-direction: column;
+        gap: 0px;
+        padding: 0px;
+    }
+}
+
+.myimgs .div2{
+    display: flex;
+    width:100% ;
+    gap: 20px;
+    padding-bottom: 50px;
+    height: 70vh;
+    
+}
+
+@media(max-width: 576px){
+.myimgs .div2{
+        flex-direction: column;
+        gap: 10px;
+    }
+}
+
+.ghgh{
+   
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-top: 50px;
+    width: 100%;
+    height: 20vh;
+}
+.ghgh h1{
+    font-size: 55px;
+    font-weight: 700px;
+    color: #000000;
+    letter-spacing: 0%;
+    margin-top: 50px;
+}
+
+
+@media(max-width: 576px){
+.ghgh h1{
+        font-size: 35px;
+        margin: 0px;
+        text-align: center;
+        width: 80%;
+    }
+}
+
+
+@media(max-width: 576px){
+.div1 img{
+        width: 300px;
+        height: 200px;
+        padding-top: 20px;
+        
+    }
+}
+
+@media(max-width: 576px){
+.div2 img{
+        width: 300px;
+        height: 200px
+    }
+}
