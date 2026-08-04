@@ -1,17 +1,21 @@
-import { StrictMode } from 'react'
-import { createRoot } from 'react-dom/client'
-import { RouterProvider } from 'react-router-dom';
-import myRouter from './Router';
+import { StrictMode } from "react";
+import { createRoot } from "react-dom/client";
+import { RouterProvider } from "react-router-dom";
 
-import "primereact/resources/themes/lara-light-cyan/theme.css";
+import myRouter from "./router";
+import { AuthProvider } from "./context/AuthContext";
 
-import 'primeicons/primeicons.css';
-import"primeflex/primeflex.css"
+import "bootstrap/dist/css/bootstrap.min.css";
+import "bootstrap/dist/js/bootstrap.bundle.min.js";
 
-
-
-createRoot(document.getElementById('root')).render(
+createRoot(document.getElementById("root")).render(
   <StrictMode>
-    <RouterProvider router={myRouter}/>
+
+    <AuthProvider>
+
+      <RouterProvider router={myRouter} />
+
+    </AuthProvider>
+
   </StrictMode>
-)
+);
