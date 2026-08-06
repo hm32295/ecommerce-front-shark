@@ -3,6 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { loginSchema } from "../../../validation/auth.schema";
 import AuthForm from "../../../component/Auth/AuthForm";
 import { useAuth } from "../../../context/AuthContext";
+import { jwtDecode } from "jwt-decode";
 
 const Login = () => {
   const navigate= useNavigate()
@@ -10,8 +11,13 @@ const Login = () => {
   const { login } = useAuth();
   const handleLogin = async (data) => {
     try {
-      await login({ email: data.email, password: data.password, });
-      navigate("/");
+      const response = await login({ email: data.email, password: data.password, });
+      localStorage.setItem('toke' , response.data.token)
+      if (response.data.token) {
+          const decoded = jwtDecode(response.data.token);
+        if (decoded.role === 'admin') navigate('/admin')
+        else navigate('/')
+        }
     } catch (error) {
       console.log("Login error:", error);
     }
