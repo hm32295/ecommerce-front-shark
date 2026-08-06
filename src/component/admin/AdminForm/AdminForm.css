@@ -1,0 +1,349 @@
+
+/* =========================================
+   ADMIN FORM
+========================================= */
+
+.admin-form-card {
+  background: #ffffff;
+
+  border: 1px solid #edf0f3;
+
+  border-radius: 14px;
+
+  box-shadow: 0 3px 15px rgba(0, 0, 0, 0.025);
+
+  overflow: hidden;
+}
+
+
+/* =========================================
+   HEADER
+========================================= */
+
+.admin-form-header {
+  padding: 22px 24px;
+
+  border-bottom: 1px solid #edf0f3;
+}
+
+
+.admin-form-header h2 {
+  margin: 0;
+
+  font-size: 18px;
+
+  font-weight: 700;
+
+  color: #17191c;
+}
+
+
+.admin-form-header p {
+  margin: 5px 0 0;
+
+  font-size: 13px;
+
+  color: #8a9098;
+}
+
+
+/* =========================================
+   FORM BODY
+========================================= */
+
+.admin-form-card form {
+  padding: 25px;
+}
+
+
+/* =========================================
+   LABEL
+========================================= */
+
+.admin-form-label {
+  display: block;
+
+  margin-bottom: 8px;
+
+  color: #3c4148;
+
+  font-size: 13px;
+
+  font-weight: 600;
+}
+
+
+/* =========================================
+   INPUT
+========================================= */
+
+.admin-form-control {
+  width: 100%;
+
+  min-height: 44px;
+
+  border: 1px solid #e2e5e9;
+
+  border-radius: 9px;
+
+  background: #ffffff;
+
+  padding: 10px 13px;
+
+  outline: none;
+
+  color: #272b31;
+
+  font-size: 13px;
+
+  transition: all 0.2s ease;
+}
+
+
+textarea.admin-form-control {
+  resize: vertical;
+
+  min-height: 120px;
+}
+
+
+.admin-form-control::placeholder {
+  color: #a5aab2;
+}
+
+
+.admin-form-control:hover {
+  border-color: #d4d8dd;
+}
+
+
+.admin-form-control:focus {
+  border-color: #9da3ab;
+
+  box-shadow: 0 0 0 3px rgba(17, 24, 39, 0.05);
+}
+
+
+.admin-form-control.error {
+  border-color: #dc3545;
+}
+
+
+.admin-form-control.error:focus {
+  box-shadow: 0 0 0 3px rgba(220, 53, 69, 0.08);
+}
+
+
+/* =========================================
+   PASSWORD
+========================================= */
+
+.admin-password-toggle {
+  position: absolute;
+
+  top: 50%;
+
+  right: 12px;
+
+  transform: translateY(-50%);
+
+  border: none;
+
+  background: transparent;
+
+  color: #8a9098;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  padding: 4px;
+}
+
+
+.admin-password-toggle:hover {
+  color: #17191c;
+}
+
+
+/* =========================================
+   ERROR
+========================================= */
+
+.admin-form-error {
+  color: #dc3545;
+
+  font-size: 11px;
+
+  margin-top: 5px;
+}
+
+
+/* =========================================
+   FILE
+========================================= */
+
+.admin-file-box {
+  min-height: 120px;
+
+  border: 1.5px dashed #d9dde2;
+
+  border-radius: 10px;
+
+  display: flex;
+
+  flex-direction: column;
+
+  align-items: center;
+
+  justify-content: center;
+
+  gap: 5px;
+
+  color: #747a83;
+
+  cursor: pointer;
+
+  transition: 0.2s;
+
+  background: #fafbfc;
+}
+
+
+.admin-file-box:hover {
+  border-color: #a8adb5;
+
+  background: #f7f8f9;
+
+  color: #25282d;
+}
+
+
+.admin-file-box span {
+  font-size: 13px;
+
+  font-weight: 600;
+}
+
+
+.admin-file-box small {
+  font-size: 11px;
+
+  color: #9ca1a8;
+}
+
+
+/* =========================================
+   ACTIONS
+========================================= */
+
+.admin-form-actions {
+  margin-top: 30px;
+
+  padding-top: 20px;
+
+  border-top: 1px solid #edf0f3;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: flex-end;
+
+  gap: 10px;
+}
+
+
+.admin-form-cancel,
+.admin-form-submit {
+  min-height: 42px;
+
+  padding: 0 18px;
+
+  border-radius: 9px;
+
+  font-size: 13px;
+
+  font-weight: 600;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  gap: 8px;
+
+  transition: 0.2s;
+}
+
+
+.admin-form-cancel {
+  border: 1px solid #e1e4e8;
+
+  background: #ffffff;
+
+  color: #666c75;
+}
+
+
+.admin-form-cancel:hover {
+  background: #f6f7f8;
+
+  color: #25282d;
+}
+
+
+.admin-form-submit {
+  border: none;
+
+  background: #111827;
+
+  color: #ffffff;
+}
+
+
+.admin-form-submit:hover {
+  background: #252b36;
+
+  box-shadow: 0 5px 15px rgba(17, 24, 39, 0.12);
+}
+
+
+.admin-form-submit:disabled,
+.admin-form-cancel:disabled {
+  opacity: 0.6;
+
+  cursor: not-allowed;
+}
+
+
+/* =========================================
+   MOBILE
+========================================= */
+
+@media (max-width: 575.98px) {
+
+  .admin-form-header {
+    padding: 18px;
+  }
+
+
+  .admin-form-card form {
+    padding: 18px;
+  }
+
+
+  .admin-form-actions {
+    flex-direction: column-reverse;
+  }
+
+
+  .admin-form-cancel,
+  .admin-form-submit {
+    width: 100%;
+  }
+
+}

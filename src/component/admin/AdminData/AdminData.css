@@ -1,0 +1,435 @@
+
+/* =========================================
+   DATA PAGE
+========================================= */
+
+.admin-data-page {
+  width: 100%;
+}
+
+
+/* =========================================
+   HEADER
+========================================= */
+
+.admin-data-page-header {
+  margin-bottom: 22px;
+}
+
+.admin-data-page-header h2 {
+  margin: 0;
+
+  font-size: 23px;
+
+  font-weight: 700;
+
+  color: #17191c;
+}
+
+.admin-data-page-header p {
+  margin: 5px 0 0;
+
+  color: #8a9098;
+
+  font-size: 13px;
+}
+
+
+/* =========================================
+   FILTER CARD
+========================================= */
+
+.admin-filter-card {
+  background: #ffffff;
+
+  border: 1px solid #edf0f3;
+
+  border-radius: 13px;
+
+  padding: 20px;
+
+  margin-bottom: 20px;
+}
+
+
+/* =========================================
+   FILTER TITLE
+========================================= */
+
+.admin-filter-title {
+  display: flex;
+
+  align-items: center;
+
+  gap: 11px;
+
+  margin-bottom: 18px;
+}
+
+
+.admin-filter-title-icon {
+  width: 34px;
+
+  height: 34px;
+
+  border-radius: 8px;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  background: #f4f5f7;
+
+  color: #4b515a;
+}
+
+
+.admin-filter-title h3 {
+  margin: 0;
+
+  font-size: 14px;
+
+  font-weight: 700;
+
+  color: #25282d;
+}
+
+
+.admin-filter-title span {
+  display: block;
+
+  margin-top: 2px;
+
+  color: #9399a1;
+
+  font-size: 11px;
+}
+
+
+/* =========================================
+   FILTER LABEL
+========================================= */
+
+.admin-filter-label {
+  display: block;
+
+  margin-bottom: 7px;
+
+  color: #555b64;
+
+  font-size: 12px;
+
+  font-weight: 600;
+}
+
+
+/* =========================================
+   FILTER INPUT
+========================================= */
+
+.admin-filter-input {
+  width: 100%;
+
+  height: 42px;
+
+  padding: 0 12px;
+
+  border: 1px solid #e2e5e9;
+
+  border-radius: 8px;
+
+  outline: none;
+
+  background: #ffffff;
+
+  color: #30343a;
+
+  font-size: 12px;
+
+  transition: 0.2s;
+}
+
+
+.admin-filter-input::placeholder {
+  color: #a5aab2;
+}
+
+
+.admin-filter-input:focus {
+  border-color: #9da3ab;
+
+  box-shadow: 0 0 0 3px rgba(17, 24, 39, 0.04);
+}
+
+
+/* =========================================
+   FILTER BUTTONS
+========================================= */
+
+.admin-filter-actions {
+  display: flex;
+
+  justify-content: flex-end;
+
+  align-items: center;
+
+  gap: 8px;
+
+  margin-top: 5px;
+}
+
+
+.admin-filter-reset,
+.admin-filter-submit {
+  height: 40px;
+
+  padding: 0 15px;
+
+  border-radius: 8px;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  gap: 7px;
+
+  font-size: 12px;
+
+  font-weight: 600;
+
+  transition: 0.2s;
+}
+
+
+.admin-filter-reset {
+  border: 1px solid #e1e4e8;
+
+  background: #ffffff;
+
+  color: #656b73;
+}
+
+
+.admin-filter-reset:hover {
+  background: #f6f7f8;
+}
+
+
+.admin-filter-submit {
+  border: none;
+
+  background: #111827;
+
+  color: #ffffff;
+}
+
+
+.admin-filter-submit:hover {
+  background: #252b36;
+}
+
+
+/* =========================================
+   TABLE
+========================================= */
+
+.admin-table-card {
+  background: #ffffff;
+
+  border: 1px solid #edf0f3;
+
+  border-radius: 13px;
+
+  overflow: hidden;
+}
+
+
+.admin-table-wrapper {
+  width: 100%;
+
+  overflow-x: auto;
+}
+
+
+.admin-table {
+  width: 100%;
+
+  min-width: 700px;
+
+  border-collapse: collapse;
+}
+
+
+.admin-table thead {
+  background: #fafbfc;
+}
+
+
+.admin-table th {
+  padding: 14px 17px;
+
+  text-align: left;
+
+  white-space: nowrap;
+
+  color: #777d86;
+
+  font-size: 11px;
+
+  font-weight: 700;
+
+  text-transform: uppercase;
+
+  letter-spacing: 0.4px;
+
+  border-bottom: 1px solid #edf0f3;
+}
+
+
+.admin-table td {
+  padding: 15px 17px;
+
+  color: #41464e;
+
+  font-size: 13px;
+
+  border-bottom: 1px solid #f0f1f3;
+
+  vertical-align: middle;
+}
+
+
+.admin-table tbody tr {
+  transition: background 0.15s;
+}
+
+
+.admin-table tbody tr:hover {
+  background: #fafbfc;
+}
+
+
+.admin-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+
+/* =========================================
+   EMPTY / LOADING
+========================================= */
+
+.admin-table-empty,
+.admin-table-loading {
+  height: 180px;
+
+  text-align: center !important;
+
+  color: #9298a0 !important;
+}
+
+
+.admin-table-loading {
+  display: table-cell;
+
+  vertical-align: middle;
+}
+
+
+.admin-table-loading .spinner-border {
+  margin-right: 8px;
+}
+
+
+/* =========================================
+   MOBILE
+========================================= */
+
+@media (max-width: 575.98px) {
+
+  .admin-filter-card {
+    padding: 16px;
+  }
+
+
+  .admin-filter-actions {
+    flex-direction: column-reverse;
+  }
+
+
+  .admin-filter-reset,
+  .admin-filter-submit {
+    width: 100%;
+  }
+
+
+  .admin-data-page-header h2 {
+    font-size: 20px;
+  }
+
+}
+
+.admin-table-actions {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.admin-action-btn {
+  width: 36px;
+  height: 36px;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+
+  background: #ffffff;
+
+  cursor: pointer;
+
+  transition: all 0.2s ease;
+}
+
+.admin-action-btn:hover {
+  transform: translateY(-2px);
+}
+
+/* Show */
+
+.admin-action-show {
+  color: #2563eb;
+}
+
+.admin-action-show:hover {
+  background-color: #eff6ff;
+  border-color: #bfdbfe;
+}
+
+/* Edit */
+
+.admin-action-edit {
+  color: #d97706;
+}
+
+.admin-action-edit:hover {
+  background-color: #fffbeb;
+  border-color: #fde68a;
+}
+
+/* Delete */
+
+.admin-action-delete {
+  color: #dc2626;
+}
+
+.admin-action-delete:hover {
+  background-color: #fef2f2;
+  border-color: #fecaca;
+}
