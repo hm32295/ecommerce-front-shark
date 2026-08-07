@@ -3,6 +3,7 @@ import AdminDataPage from "../../../component/admin/AdminData/AdminData";
 import Header from "../../../component/admin/Header/Header"
 import { useProduct } from "../../../context/ProductsContext";
 import { useCategory } from "../../../context/CategoryContext";
+import AdminPagination from "../../../component/admin/AdminPagination/AdminPagination";
 const filters = (categories) => {
   return [
     {
@@ -69,7 +70,7 @@ const columns=[
 
         ]
 const Products = () => {
-  
+  const [countProduct ,setCountProduct] = useState(0)
   const [product, setProduct] = useState([])
   const { getProducts, loading ,deleteOneProduct} = useProduct();
   const [categories, setCategories] = useState([])
@@ -84,32 +85,37 @@ const Products = () => {
       
     }
   }
-  
+
   const handelProduct = async () => {
+    const page = 1;
+    const size = 5
     try {
-      const response = await getProducts();
-      console.log(response.data);
-      
+      const response = await getProducts({page,size});
+
+      setCountProduct(response.count)
       setProduct(response.data);
     } catch (error) {
       console.log(error);
     }
   }
-
-  useEffect(() => {
-    handelProduct()
-    handelCategories()
-  }, [])
+  const handleFilter = async ({ title,min_price , max_price ,category }) => {
+      try {
+        const response = await getProducts({ title, min_price, max_price, category,page:1,size:5 });
+        setCountProduct(response.count);
   
-  const handleFilter = async ({ title,min_price , max_price ,category}) => {
-        try {
-      const response = await getProducts({ title, min_price, max_price, category });
+
       setProduct(response.data);
     } catch (error) {
       console.log(error);
     }
 
   };
+  useEffect(() => {
+    handelProduct()
+    handelCategories()
+  }, [])
+  
+
 
 
   const deleteProduct = async (id) => {
@@ -166,7 +172,8 @@ const Products = () => {
             },
           }]}
 
-    />
+      />
+      
     </div>
   )
 }

@@ -1,11 +1,5 @@
 import { createBrowserRouter } from "react-router-dom";
 
-import Home from "./Pages/Home/Home";
-import Shop from "./Pages/Shop/Shop";
-import Single from "./Pages/Single/Single";
-import OnSale from "./Pages/OnSale/OnSale";
-import NewArrivals from "./Pages/NewArrivals/NewArrivals";
-import Brands from "./Pages/Brands/Brands";
 
 import AuthLayout from "./Pages/auth/authLayout/authLayout";
 import Login from "./Pages/auth/login/Login";
@@ -40,51 +34,6 @@ import ErrorPage from "./Pages/ErrorPage/ErrorPage";
 
 
 const myRouter = createBrowserRouter([
-
-  {
-    path: "/user",
-    element: <Home />,
-
-    children: [
-
-      {
-        index: true,
-        element: <Home />,
-      },
-
-      {
-        path: "home",
-        element: <Home />,
-      },
-
-      {
-        path: "shop",
-        element: <Shop />,
-      },
-
-      {
-        path: "single/:id",
-        element: <Single />,
-      },
-
-      {
-        path: "onsale",
-        element: <OnSale />,
-      },
-
-      {
-        path: "new-arrivals",
-        element: <NewArrivals />,
-      },
-
-      {
-        path: "brands",
-        element: <Brands />,
-      },
-
-    ],
-  },
-
 
   {
     path: "/admin",
