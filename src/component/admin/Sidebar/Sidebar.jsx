@@ -1,5 +1,5 @@
 
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 
 import {
   LayoutDashboard,
@@ -13,6 +13,7 @@ import {
   ChevronRight,
   TicketPercent,
 } from "lucide-react";
+import { useAuth } from "../../../context/AuthContext";
 
 
 const Sidebar = ({
@@ -20,7 +21,9 @@ const Sidebar = ({
   onClose,
 }) => {
 
+  const navigation = useNavigate('')
 
+  const {logout} = useAuth()
   const menuItems = [
     {
       title: "Dashboard",
@@ -62,9 +65,6 @@ const Sidebar = ({
   return (
     <>
 
-      {/* ============================= */}
-      {/* Overlay */}
-      {/* ============================= */}
 
       {open && (
         <div
@@ -73,18 +73,11 @@ const Sidebar = ({
         />
       )}
 
-
-      {/* ============================= */}
-      {/* Sidebar */}
-      {/* ============================= */}
-
       <aside
         className={`admin-sidebar ${
           open ? "show" : ""
         }`}
       >
-
-        {/* Header */}
 
         <div className="admin-sidebar-header">
 
@@ -211,6 +204,10 @@ const Sidebar = ({
           <button
             type="button"
             className="admin-logout-btn"
+            onClick={async () => {
+              await logout()
+              navigation('/auth')
+            }}
           >
 
             <LogOut size={19} />

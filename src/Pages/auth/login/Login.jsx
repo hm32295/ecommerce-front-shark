@@ -12,11 +12,11 @@ const Login = () => {
   const handleLogin = async (data) => {
     try {
       const response = await login({ email: data.email, password: data.password, });
-      localStorage.setItem('toke' , response.data.token)
+      localStorage.setItem('token' , response.data.token)
       if (response.data.token) {
           const decoded = jwtDecode(response.data.token);
         if (decoded.role === 'admin') navigate('/admin')
-        else navigate('/')
+        else navigate('/user')
         }
     } catch (error) {
       console.log("Login error:", error);

@@ -88,6 +88,8 @@ const Products = () => {
   const handelProduct = async () => {
     try {
       const response = await getProducts();
+      console.log(response.data);
+      
       setProduct(response.data);
     } catch (error) {
       console.log(error);

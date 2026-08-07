@@ -38,9 +38,18 @@ const EditProduct = () => {
   }, [])
   
   const handleSubmit = async (data) => {
-    data.image = 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQwO0wY2zmLQ-AFOwPUfj_GWNfC4AVxIUeIKEocoo0a9g&s=10'
-  try {
-    await editOneProduct(id,data)
+      const formData = new FormData();
+      formData.append("title", data.title);
+      formData.append("brand", data.brand);
+      formData.append("price", data.price);
+      formData.append("stock", data.stock);
+      formData.append("category", data.category);
+      formData.append("description", data.description);
+      if (data.image?.[0]) {
+        formData.append("image", data.image[0]);
+    }
+    try {
+    await editOneProduct(id,formData)
     navigate("/admin/products");
     
   } catch (error) {

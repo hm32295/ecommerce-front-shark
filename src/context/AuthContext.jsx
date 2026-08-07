@@ -37,38 +37,7 @@ export const AuthProvider = ({ children }) => {
   const [error, setError] = useState(null);
 
 
-  // ======================================
-  // Get Current User
-  // ======================================
-
-//   const getUser = async () => {
-//     try {
-//       setLoading(true);
-//       setError(null);
-
-//       const response = await getCurrentUser();
-
-//       setUser(response.data.user);
-
-//     } catch (error) {
-
-//       setUser(null);
-
-//       console.log(
-//         "Get current user error:",
-//         error
-//       );
-
-//     } finally {
-//       setLoading(false);
-//     }
-//   };
-
-
-  // ======================================
-  // Login
-  // ======================================
-
+ 
   const login = async (data) => {
 
     try {
@@ -100,10 +69,6 @@ export const AuthProvider = ({ children }) => {
   };
 
 
-  // ======================================
-  // Register
-  // ======================================
-
   const register = async (data) => {
 
     try {
@@ -132,11 +97,6 @@ export const AuthProvider = ({ children }) => {
     }
   };
 
-
-  // ======================================
-  // Logout
-  // ======================================
-
   const logout = async () => {
 
     try {
@@ -144,7 +104,7 @@ export const AuthProvider = ({ children }) => {
       setLoading(true);
 
       await logoutUser();
-
+      localStorage.removeItem('token')
       setUser(null);
 
     } catch (error) {
@@ -289,9 +249,6 @@ export const AuthProvider = ({ children }) => {
 };
 
 
-// ======================================
-// Custom Hook
-// ======================================
 
 export const useAuth = () => {
 

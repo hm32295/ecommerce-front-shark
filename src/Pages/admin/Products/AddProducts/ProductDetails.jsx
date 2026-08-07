@@ -13,7 +13,6 @@ const ProductDetails = () => {
 
 
   const getProduct = async () => {
-    
       try {
           const response = await getOneProduct(id);
           console.log(response);
