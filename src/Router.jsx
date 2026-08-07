@@ -1,7 +1,7 @@
 import { createBrowserRouter } from "react-router-dom";
 
 
-import AuthLayout from "./Pages/auth/authLayout/authLayout";
+import AuthLayout from "./Pages/auth/AuthLayout/AuthLayout";
 import Login from "./Pages/auth/login/Login";
 import Verify from "./Pages/auth/Verify/Verify";
 import Reset from "./Pages/auth/reset/Reset";
