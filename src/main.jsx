@@ -10,7 +10,7 @@ import { ProductProvider } from "./context/ProductsContext";
 import { CategoryProvider } from "./context/CategoryContext";
 import { UsersProvider } from "./context/UsersContext";
 import { CouponProvider } from "./context/CouponContext";
-import myRouter from "./router";
+import myRouter from "./Router";
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
