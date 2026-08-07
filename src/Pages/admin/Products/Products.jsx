@@ -116,8 +116,6 @@ const Products = () => {
   }, [])
   
 
-
-
   const deleteProduct = async (id) => {
     try {
       await deleteOneProduct(id)

@@ -2,7 +2,6 @@ import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import { RouterProvider } from "react-router-dom";
 
-import myRouter from "./router";
 import { AuthProvider } from "./context/AuthContext";
 
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -11,6 +10,7 @@ import { ProductProvider } from "./context/ProductsContext";
 import { CategoryProvider } from "./context/CategoryContext";
 import { UsersProvider } from "./context/UsersContext";
 import { CouponProvider } from "./context/CouponContext";
+import myRouter from "./router";
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
