@@ -1,34 +1,32 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import AdminDataPage from "../../../component/admin/AdminData/AdminData";
 import Header from "../../../component/admin/Header/Header"
 import { useCategory } from "../../../context/CategoryContext";
 
 const Category = () => {
   
-  const [categories, setCategories] = useState([])
-  const {getAllCategories,loading ,deleteCategory} = useCategory()
+  const {getAllCategories,categories,loading ,deleteCategory} = useCategory()
 
- const handelCategories = async () => {
-    try {
-      const response = await getAllCategories()
-      setCategories(response.data)
-    } catch (error) {
-      console.log(error);
-      
-    }
-  }
+
   const handelDeleteCategory = async (id) => {
     try {
       await deleteCategory(id)
-      handelCategories()
+      await getAllCategories()
     } catch (error) {
       console.log(error);
       
     }
   }
   useEffect(() => {
+     const handelCategories = async () => {
+        try {
+          await getAllCategories()
+        } catch (error) {
+          console.log(error);
+        }
+      }
     handelCategories()
-  }, [])
+  }, [getAllCategories])
   
  
   return (

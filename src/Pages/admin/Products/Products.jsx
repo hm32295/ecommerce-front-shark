@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import AdminDataPage from "../../../component/admin/AdminData/AdminData";
 import Header from "../../../component/admin/Header/Header"
 import { useProduct } from "../../../context/ProductsContext";
@@ -70,56 +70,42 @@ const columns=[
 
         ]
 const Products = () => {
-  const [countProduct ,setCountProduct] = useState(0)
-  const [product, setProduct] = useState([])
-  const { getProducts, loading ,deleteOneProduct} = useProduct();
-  const [categories, setCategories] = useState([])
-  const {getAllCategories} = useCategory()
+  const { getProducts, loading ,deleteOneProduct ,products} = useProduct();
+  const {getAllCategories ,categories} = useCategory()
 
- const handelCategories = async () => {
+
+  const handelProduct = async(data = { title:'', min_price:'', max_price:'', category:'' }) => {
+      try {
+         await getProducts({...data ,page:1,size:5 });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  useEffect(() => {
+    const handelProduct = async() => {
+        try {
+           await getProducts();
+      } catch (error) {
+        console.log(error);
+      }
+    };
+     const handelCategories = async () => {
     try {
-      const response = await getAllCategories()
-      setCategories(response.data)
+       await getAllCategories()
     } catch (error) {
       console.log(error);
       
     }
   }
-
-  const handelProduct = async () => {
-    const page = 1;
-    const size = 5
-    try {
-      const response = await getProducts({page,size});
-
-      setCountProduct(response.count)
-      setProduct(response.data);
-    } catch (error) {
-      console.log(error);
-    }
-  }
-  const handleFilter = async ({ title,min_price , max_price ,category }) => {
-      try {
-        const response = await getProducts({ title, min_price, max_price, category,page:1,size:5 });
-        setCountProduct(response.count);
-  
-
-      setProduct(response.data);
-    } catch (error) {
-      console.log(error);
-    }
-
-  };
-  useEffect(() => {
     handelProduct()
     handelCategories()
-  }, [])
+  }, [getAllCategories ,getProducts])
   
 
   const deleteProduct = async (id) => {
     try {
       await deleteOneProduct(id)
-      handelProduct()
+      await getProducts()
     } catch (error) {
       console.log(error);
       
@@ -141,8 +127,8 @@ const Products = () => {
         filters={filters(categories)}
         columns={columns}
         type ="add"
-        data={product}
-        onFilter={handleFilter}
+        data={products}
+        onFilter={handelProduct}
         actions={[
           {
             type: "show",

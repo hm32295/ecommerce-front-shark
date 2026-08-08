@@ -48,9 +48,7 @@ const AddCoupon = () => {
 
   const handleSubmit = async (data) => {
    try {
-    const response = await addCoupon(data)
-    console.log(response);
-    
+     await addCoupon(data)
     navigate("/admin/coupon");
   } catch (error) {
     console.log(error);

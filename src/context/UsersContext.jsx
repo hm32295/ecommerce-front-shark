@@ -1,4 +1,4 @@
-import {  createContext, useContext, useState } from "react";
+import {  createContext, useCallback, useContext, useState } from "react";
 import { blockUserApi, getAllUsersApi, getSingleUserApi } from "../api/users.api";
 import { dashboardApi } from "../api/dashboard.api";
 
@@ -7,15 +7,24 @@ export const UsersContext = createContext(null);
 
 export const UsersProvider = ({ children }) => {
     const [users , setUsers] = useState([])
+    const [user , setUser] = useState([])
+    const [dashboardData , setDashboardData] = useState({
+    products: 0,
+    users: 0,
+    categories: 0,
+    coupons: 0,
+    orders: 0,
+  })
     const [loading , setLoading] = useState(false)
     const [error, setError] = useState(null)
     
-    const dashboard = async () => {
+    const dashboard = useCallback(async () => {
     
         try {
           setLoading(true);
           setError(null);
           const response = await dashboardApi();
+          setDashboardData(response.data.data)
           return response.data;
         } catch (error) {
           const message =
@@ -28,15 +37,20 @@ export const UsersProvider = ({ children }) => {
         } finally {
           setLoading(false);
         }
-    };
+    },[]);
     
-    const getAllUsers = async () => {
+    const getAllUsers = useCallback(async () => {
     
         try {
           setLoading(true);
           setError(null);
           const response = await getAllUsersApi();
-          setUsers(response.data.Users);
+          const handelResponse = response.data.data.map(user => {
+            return {
+              address: `${user.adress?.city || ''}- ${user.adress?.area || ''}- ${user.adress?.street || ''} `,
+              ...user}
+            })
+          setUsers(handelResponse);
           return response.data;
         } catch (error) {
           const message =
@@ -49,15 +63,15 @@ export const UsersProvider = ({ children }) => {
         } finally {
           setLoading(false);
         }
-    };
+    },[]);
     
-    const getOneUsers = async (id) => {
+    const getOneUsers =useCallback (async (id) => {
     
         try {
           setLoading(true);
           setError(null);
           const response = await getSingleUserApi(id);
-          setUsers(response.data.Users);
+          setUser(response.data.data);
           return response.data;
         } catch (error) {
           const message =
@@ -70,15 +84,15 @@ export const UsersProvider = ({ children }) => {
         } finally {
           setLoading(false);
         }
-    };
+    },[]);
     
-    const blockUser = async (id) => {
+    const blockUser =useCallback (async (id) => {
     
         try {
           setLoading(true);
           setError(null);
           const response = await blockUserApi(id);
-          setUsers(response.data.Users);
+          setUser(response.data.data);
           return response.data;
         } catch (error) {
           const message =
@@ -91,16 +105,18 @@ export const UsersProvider = ({ children }) => {
         } finally {
           setLoading(false);
         }
-    };
+    },[]);
     
 
 
     return (
         <UsersContext.Provider
             value={{
-                users,
+          users,
+              user,
                 loading,
           getAllUsers,
+          dashboardData,
                 dashboard,
                 getOneUsers,
                 error,

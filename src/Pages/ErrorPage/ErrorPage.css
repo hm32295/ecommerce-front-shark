@@ -1,0 +1,262 @@
+
+.error-page {
+  min-height: 100vh;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  padding: 30px;
+
+  background:
+    radial-gradient(
+      circle at top left,
+      #eeeaff 0%,
+      transparent 35%
+    ),
+    radial-gradient(
+      circle at bottom right,
+      #eaf4ff 0%,
+      transparent 35%
+    ),
+    #f8f9fc;
+}
+
+
+/* ============================= */
+/* Container */
+/* ============================= */
+
+.error-container {
+  width: 100%;
+  max-width: 650px;
+
+  padding: 55px 45px;
+
+  text-align: center;
+
+  background: rgba(255, 255, 255, 0.9);
+
+  border: 1px solid #edf0f6;
+
+  border-radius: 28px;
+
+  box-shadow:
+    0 25px 70px rgba(30, 35, 60, 0.08);
+
+  backdrop-filter: blur(10px);
+}
+
+
+/* ============================= */
+/* Icon */
+/* ============================= */
+
+.error-icon {
+  width: 82px;
+  height: 82px;
+
+  margin: 0 auto 20px;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 50%;
+
+  background: #fff0f2;
+
+  color: #e24b61;
+
+  box-shadow:
+    0 10px 25px rgba(226, 75, 97, 0.12);
+}
+
+
+/* ============================= */
+/* Error Code */
+/* ============================= */
+
+.error-code {
+  margin: 0;
+
+  font-size: 110px;
+
+  line-height: 1;
+
+  font-weight: 800;
+
+  letter-spacing: -6px;
+
+  color: #5542d5;
+}
+
+
+/* ============================= */
+/* Title */
+/* ============================= */
+
+.error-title {
+  margin: 12px 0 10px;
+
+  font-size: 28px;
+
+  font-weight: 700;
+
+  color: #151a2d;
+}
+
+
+/* ============================= */
+/* Description */
+/* ============================= */
+
+.error-description {
+  max-width: 500px;
+
+  margin: 0 auto;
+
+  color: #747b91;
+
+  font-size: 15px;
+
+  line-height: 1.8;
+}
+
+
+/* ============================= */
+/* Buttons */
+/* ============================= */
+
+.error-actions {
+  display: flex;
+
+  justify-content: center;
+
+  gap: 12px;
+
+  margin-top: 30px;
+}
+
+.error-actions button {
+  height: 48px;
+
+  padding: 0 20px;
+
+  display: inline-flex;
+
+  align-items: center;
+  justify-content: center;
+
+  gap: 8px;
+
+  border: none;
+
+  border-radius: 12px;
+
+  font-size: 14px;
+
+  font-weight: 600;
+
+  cursor: pointer;
+
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease,
+    background 0.2s ease;
+}
+
+
+/* Back */
+
+.error-back-btn {
+  color: #5542d5;
+
+  background: #eeeaff;
+}
+
+.error-back-btn:hover {
+  transform: translateY(-2px);
+
+  background: #e3ddff;
+
+  box-shadow:
+    0 8px 20px rgba(85, 66, 213, 0.12);
+}
+
+
+/* Home */
+
+.error-home-btn {
+  color: white;
+
+  background: #5542d5;
+}
+
+.error-home-btn:hover {
+  transform: translateY(-2px);
+
+  background: #4634bd;
+
+  box-shadow:
+    0 8px 20px rgba(85, 66, 213, 0.22);
+}
+
+
+/* ============================= */
+/* Help */
+/* ============================= */
+
+.error-help {
+  display: block;
+
+  margin-top: 25px;
+
+  color: #9ba1b2;
+
+  font-size: 12px;
+}
+
+
+/* ============================= */
+/* Responsive */
+/* ============================= */
+
+@media (max-width: 600px) {
+
+  .error-page {
+    padding: 20px;
+  }
+
+  .error-container {
+    padding: 40px 25px;
+
+    border-radius: 22px;
+  }
+
+  .error-code {
+    font-size: 80px;
+
+    letter-spacing: -4px;
+  }
+
+  .error-title {
+    font-size: 23px;
+  }
+
+  .error-description {
+    font-size: 14px;
+  }
+
+  .error-actions {
+    flex-direction: column;
+  }
+
+  .error-actions button {
+    width: 100%;
+  }
+
+}
+

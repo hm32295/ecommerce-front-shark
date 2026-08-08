@@ -2,7 +2,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import { useCoupon } from "../../../context/CouponContext";
 import AdminForm from "../../../component/admin/AdminForm/AdminForm";
 import Header from "../../../component/admin/Header/Header";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 
   const fields = [
     {
@@ -44,23 +44,21 @@ import { useEffect, useState } from "react";
 
 const EditCoupon = () => {
     const {id} = useParams()
-    const {editCoupon,loading,getSingleCoupon} = useCoupon()
+    const {editCoupon,loading,getSingleCoupon,coupon} = useCoupon()
     const navigate = useNavigate();
-    const [coupon , setCoupon] = useState({})
 
 
-  const getCoupon = async () => {
-        try {
-            const response = await getSingleCoupon(id)
-            setCoupon(response.data)
-        } catch (error) {
-            console.log(error);
-            
-        }
-    };
     useEffect(() => {
+      const getCoupon = async () => {
+            try {
+                 await getSingleCoupon(id)
+            } catch (error) {
+                console.log(error);
+                
+            }
+        };
         getCoupon()
-    },[])
+    },[getSingleCoupon,id])
   const handleSubmit = async (data) => {
    try {
     const response = await editCoupon(id,data)

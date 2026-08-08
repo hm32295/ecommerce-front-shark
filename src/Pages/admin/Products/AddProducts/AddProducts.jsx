@@ -2,27 +2,25 @@ import { useNavigate } from "react-router-dom";
 import Header from "../../../../component/admin/Header/Header";
 import AdminForm from "../../../../component/admin/AdminForm/AdminForm";
 import { useCategory } from "../../../../context/CategoryContext";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useProduct } from "../../../../context/ProductsContext";
 
 const AddProduct = () => {
-  const [categories ,setCategories] = useState([])
   const navigate = useNavigate();
-  const { getAllCategories } = useCategory()
+  const { getAllCategories ,categories } = useCategory()
   const {addProducts ,loading} = useProduct()
 
-  const handelCategories = async () => {
-    try {
-      const response = await getAllCategories()
-      setCategories(response.data)
-    } catch (error) {
-      console.log(error);
-      
-    }
-  }
   useEffect(() => {
+    const handelCategories = async () => {
+      try {
+       await getAllCategories()
+      } catch (error) {
+        console.log(error);
+        
+      }
+    }
     handelCategories()
-  }, [])
+  }, [getAllCategories])
   
 
   const handleSubmit = async (data) => {

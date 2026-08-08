@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useCoupon } from "../../../context/CouponContext";
 import Header from "../../../component/admin/Header/Header";
 import AdminDataPage from "../../../component/admin/AdminData/AdminData";
@@ -27,29 +27,27 @@ const columns=[
         ]
 const Coupon = () => {
   
-  const [coupon, setCoupon] = useState([])
-  const { getAllCoupons, loading ,deleteCoupon} = useCoupon();
+  const { getAllCoupons,coupons, loading ,deleteCoupon} = useCoupon();
 
  
-  const handelCoupon = async () => {
-    try {
-      const response = await getAllCoupons();
-      setCoupon(response.data);
-    } catch (error) {
-      console.log(error);
-    }
-  }
-
-
+  
+  
   useEffect(() => {
+    const handelCoupon = async () => {
+      try {
+        await getAllCoupons();
+      } catch (error) {
+        console.log(error);
+      }
+    }
     handelCoupon()
-  }, [])
+  }, [getAllCoupons])
   
  
   const handelDeleteCoupon = async (id) => {
     try {
       await deleteCoupon(id)
-      handelCoupon()
+      await getAllCoupons()
     } catch (error) {
       console.log(error);
       
@@ -70,7 +68,7 @@ const Coupon = () => {
       <AdminDataPage title="coupons" subtitle="Manage your coupons and inventory" loading={loading}
         
         columns={columns}
-        data={coupon}
+        data={coupons}
         actions={[
           {
             type: "show",

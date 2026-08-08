@@ -1,4 +1,4 @@
-import {  createContext, useContext, useState } from "react";
+import {  createContext, useCallback, useContext, useState } from "react";
 import { addCategoryApi, deleteCategoryApi, editCategoryApi, getCategories, getSingleCategoryApi } from "../api/category.api";
 
 export const CategoryContext = createContext(null);
@@ -6,16 +6,17 @@ export const CategoryContext = createContext(null);
 
 export const CategoryProvider = ({ children }) => {
     const [categories , setCategories]= useState([])
+    const [category , setCategory]= useState([])
     const [loading , setLoading] = useState(false)
     const [error, setError] = useState(null)
     
-    const getAllCategories = async () => {
+    const getAllCategories = useCallback(async () => {
     
         try {
           setLoading(true);
           setError(null);
           const response = await getCategories();
-          setCategories(response.data.category);
+          setCategories(response.data.data);
           return response.data;
         } catch (error) {
           const message =
@@ -28,15 +29,15 @@ export const CategoryProvider = ({ children }) => {
         } finally {
           setLoading(false);
         }
-    };
+    },[]);
     
-    const addCategory = async (data) => {
+    const addCategory =useCallback( async (data) => {
     
         try {
           setLoading(true);
           setError(null);
           const response = await addCategoryApi(data);
-          setCategories(response.data.category);
+          setCategory(response.data.data);
           return response.data;
         } catch (error) {
           const message =
@@ -49,15 +50,15 @@ export const CategoryProvider = ({ children }) => {
         } finally {
           setLoading(false);
         }
-    };
+    },[]);
     
-    const editCategory = async (id ,data) => {
+    const editCategory = useCallback(async (id ,data) => {
     
         try {
           setLoading(true);
           setError(null);
           const response = await editCategoryApi(id,data);
-          setCategories(response.data.category);
+          setCategory(response.data.data);
           return response.data;
         } catch (error) {
           const message =
@@ -70,14 +71,14 @@ export const CategoryProvider = ({ children }) => {
         } finally {
           setLoading(false);
         }
-    };
-    const getSingleCategory = async (id ) => {
+    },[]);
+    const getSingleCategory =useCallback( async (id ) => {
     
         try {
           setLoading(true);
           setError(null);
           const response = await getSingleCategoryApi(id);
-          setCategories(response.data.category);
+          setCategory(response.data.data);
           return response.data;
         } catch (error) {
           const message =
@@ -90,15 +91,15 @@ export const CategoryProvider = ({ children }) => {
         } finally {
           setLoading(false);
         }
-    };
+    },[]);
     
-    const deleteCategory = async (id ) => {
+    const deleteCategory =useCallback( async (id ) => {
     
         try {
           setLoading(true);
           setError(null);
           const response = await deleteCategoryApi(id);
-          setCategories(response.data.category);
+          setCategory(response.data.data);
           return response.data;
         } catch (error) {
           const message =
@@ -111,13 +112,14 @@ export const CategoryProvider = ({ children }) => {
         } finally {
           setLoading(false);
         }
-    };
+    },[]);
     
 
     return (
         <CategoryContext.Provider
             value={{
                 categories,
+                category,
                 loading,
                 deleteCategory,
                 editCategory,

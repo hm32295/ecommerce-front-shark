@@ -1,34 +1,29 @@
-import { useNavigate, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { useUsers } from "../../../context/UsersContext";
-import { useEffect, useState } from "react";
+import { useEffect,  } from "react";
 import AdminDetails from "../../../component/admin/AdminDetails/AdminDetails";
 
 const UsersDetails = () => {
 
   const { id } = useParams();
 
-  const navigate = useNavigate();
-    const {getOneUsers,loading} = useUsers()
-  const [user, setUser] = useState(null);
+    const {getOneUsers,loading ,user} = useUsers()
 
 
-  const getUser = async () => {
     
-      try {
-          const response = await getOneUsers(id);
-          console.log(response);
-        
-        setUser(response.data);
-        } catch (error) {
-        console.log(error);
-        } 
-
-  };
-
-
+    
   useEffect(() => {
+    const getUser = async () => {
+      
+        try {
+            await getOneUsers(id);
+          } catch (error) {
+          console.log(error);
+          } 
+  
+    };
     getUser();
-  }, []);
+  }, [getOneUsers ,id]);
 
 
   return (

@@ -26,19 +26,11 @@ import AdminForm from "../../../component/admin/AdminForm/AdminForm";
 
 
 const EditCategory = () => {
-    const {editCategory,getSingleCategory,loading} = useCategory()
+    const {editCategory,category,getSingleCategory,loading} = useCategory()
     const navigate = useNavigate();
-    const [category, setCategory] = useState({})
 
     const { id } = useParams()
-    const handelCategory = async () => {
-        try {
-            const response = await getSingleCategory(id)
-            setCategory(response.data);     
-        } catch (error) {
-            console.log(error);
-        }
-    }
+
     const handleSubmit = async (data) => {
         try {
             const response = await editCategory( id,data)
@@ -49,9 +41,16 @@ const EditCategory = () => {
         }
     };
   
-    useEffect(() => {
+  useEffect(() => {
+          const handelCategory = async () => {
+        try {
+             await getSingleCategory(id)  
+        } catch (error) {
+            console.log(error);
+        }
+    }
      handelCategory()   
-    },[])
+    },[getSingleCategory , id])
   return (
     <>
       <Header

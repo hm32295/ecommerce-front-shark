@@ -1,33 +1,29 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { Edit, Trash2 } from "lucide-react";
-import { useParams, useNavigate } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import AdminDetails from "../../../../component/admin/AdminDetails/AdminDetails";
 import { useProduct } from "../../../../context/ProductsContext";
 const ProductDetails = () => {
 
   const { id } = useParams();
 
-  const navigate = useNavigate();
-    const {getOneProduct,loading} = useProduct()
-  const [product, setProduct] = useState(null);
+    const {getOneProduct,loading,product} = useProduct()
 
 
-  const getProduct = async () => {
-      try {
-          const response = await getOneProduct(id);
-          console.log(response);
-        
-        setProduct(response.data);
-        } catch (error) {
-        console.log(error);
-        } 
-
-  };
-
-
+    
+    
   useEffect(() => {
+    const getProduct = async () => {
+        try {
+            await getOneProduct(id);
+          
+          } catch (error) {
+          console.log(error);
+          } 
+  
+    };
     getProduct();
-  }, []);
+  }, [getOneProduct ,id]);
 
 
   return (

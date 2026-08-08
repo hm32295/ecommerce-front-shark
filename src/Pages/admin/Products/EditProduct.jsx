@@ -8,34 +8,30 @@ import AdminForm from "../../../component/admin/AdminForm/AdminForm";
 
 const EditProduct = () => {
   const { id } = useParams()
-  const [product , setProduct] = useState({})
-  const [categories ,setCategories] = useState([])
   const navigate = useNavigate();
-  const { getAllCategories } = useCategory()
-  const {getOneProduct,editOneProduct ,loading} = useProduct()
+  const { getAllCategories ,categories } = useCategory()
+  const {getOneProduct,editOneProduct,product ,loading} = useProduct()
 
-  const handelProduct= async () => {
-    try {
-      const response = await getOneProduct(id)
-      setProduct(response.data)
-    } catch (error) {
-      console.log(error);
-      
-    }
-  }
-  const handelCategories = async () => {
-    try {
-      const response = await getAllCategories()
-      setCategories(response.data)
-    } catch (error) {
-      console.log(error);
-      
-    }
-  }
   useEffect(() => {
+    const handelProduct= async () => {
+      try {
+         await getOneProduct(id)
+      } catch (error) {
+        console.log(error);
+        
+      }
+    }
+    const handelCategories = async () => {
+      try {
+         await getAllCategories()
+      } catch (error) {
+        console.log(error);
+        
+      }
+    }
       handelCategories();
       handelProduct()
-  }, [])
+  }, [getAllCategories ,getOneProduct ,id])
   
   const handleSubmit = async (data) => {
       const formData = new FormData();

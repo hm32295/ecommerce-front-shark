@@ -17,17 +17,17 @@ const ProductRoute = () => {
 
     localStorage.removeItem("token");
 
-    return <Navigate to="/auth/login" replace />;
+    return <Navigate to="/auth/" replace />;
   }
     if (role === "admin") {
       return <Outlet />;
     }
 
     if (role === "user") {
-      return <Navigate to="/user" replace />;
+      return <Navigate to="https://www.google.com/" replace />;
     }
     localStorage.removeItem("token");
-    return <Navigate to="/auth/login" replace />;
+    return <Navigate to="/auth/" replace />;
 
   
 };

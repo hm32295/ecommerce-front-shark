@@ -1,4 +1,4 @@
-import {  useEffect, useState } from "react";
+import {  useEffect } from "react";
 import AdminDataPage from "../../../component/admin/AdminData/AdminData";
 import Header from "../../../component/admin/Header/Header"
 import { useUsers } from "../../../context/UsersContext";
@@ -37,38 +37,32 @@ const columns=[
   ]
 const Products = () => {
   
-  const [users, setUsers] = useState([])
-  const { getAllUsers,blockUser, loading } = useUsers();
+  const { getAllUsers,blockUser, loading ,users } = useUsers();
 
   
-  const handelUsers = async () => {
-    try {
-      const response = await getAllUsers();
-      const handelResponse = response.data.map(user => {
-        return {
-          address: `${user.adress?.city || ''}- ${user.adress?.area || ''}- ${user.adress?.street || ''} `,
-          ...user}
-        })
-        
-      setUsers(handelResponse);
-    } catch (error) {
-      console.log(error);
-    }
-  }
-
+ 
 
   const handelBlockUser = async (id) => {
     try {
        await blockUser(id) 
-      handelUsers()
+        await getAllUsers()
     } catch (error) {
       console.log(error);
       
     }
   }
   useEffect(() => {
+    const handelUsers = async () => {
+        try {
+            await getAllUsers();
+            
+        } catch (error) {
+          console.log(error);
+        }
+        }
+
     handelUsers()
-  }, [])
+  }, [getAllUsers])
   
 
   return (

@@ -1,33 +1,30 @@
-import { useNavigate, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { useCoupon } from "../../../context/CouponContext";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import AdminDetails from "../../../component/admin/AdminDetails/AdminDetails";
 
 const CouponDetails = () => {
 
   const { id } = useParams();
 
-  const navigate = useNavigate();
-    const {getSingleCoupon,loading} = useCoupon()
-  const [coupon, setCoupon] = useState({});
+    const {getSingleCoupon,loading,coupon} = useCoupon()
 
 
-  const getCoupon = async () => {
     
-      try {
-          const response = await getSingleCoupon(id);
+    
+    useEffect(() => {
+    const getCoupon = async () => {
       
-        setCoupon(response.data);
-        } catch (error) {
-        console.log(error);
-        } 
-
-  };
-
-
-  useEffect(() => {
+        try {
+             await getSingleCoupon(id);
+        
+          } catch (error) {
+          console.log(error);
+          } 
+  
+    };
     getCoupon();
-  }, []);
+  }, [getSingleCoupon,id]);
 
 
   return (

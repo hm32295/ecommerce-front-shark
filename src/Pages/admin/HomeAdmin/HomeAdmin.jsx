@@ -10,86 +10,70 @@ import {
 } from "lucide-react";
 
 import "./HomeAdmin.css";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useUsers } from "../../../context/UsersContext";
 
 const HomeAdmin = () => {
   
-  const [dashboardData ,setDashboardData] = useState({
-    products: 0,
-    users: 0,
-    categories: 0,
-    coupons: 0,
-    orders: 0,
-  })
-  const { dashboard, loading } = useUsers({})
+  const { dashboard, loading ,dashboardData } = useUsers({})
   
   
-
-
-
-
-
-  const handelDashboard = async()=> {
-    try {
-      const response = await dashboard()
-      setDashboardData({
-            products: response.data.productCount,
-            users: response.data.usersCount,
-            categories: response.data.categoryCount,
-            coupons: response.data.couponCount,
-            orders: response.data.orderCount,
-      });
-      
-    } catch (error) {
-      console.log(error);
-      
-    }
-  };
-
-
   useEffect(() => {
+    const handelDashboard = async()=> {
+      try {
+         await dashboard()
+      } catch (error) {
+        console.log(error);
+      }
+    };
     handelDashboard()  
-  },[])
+  },[dashboard])
  
 
-  const stats = [
-    {
-      title: "Products",
-      value: dashboardData.products,
-      icon: Package,
-      className: "products",
-    },
-    {
-      title: "Users",
-      value: dashboardData.users,
-      icon: Users,
-      className: "users",
-    },
-    {
-      title: "Categories",
-      value: dashboardData.categories,
-      icon: Tags,
-      className: "categories",
-    },
-    {
-      title: "Coupons",
-      value: dashboardData.coupons,
-      icon: TicketPercent,
-      className: "coupons",
-    },
-    {
-      title: "Orders",
-      value: dashboardData.orders,
-      icon: ShoppingCart,
-      className: "orders",
-    },
-  ];
+  const stats = (dashboardData) => {
+    
+    return [
+      {
+        title: "Products",
+        value: dashboardData.productCount
+,
+        icon: Package,
+        className: "products",
+      },
+      {
+        title: "Users",
+        value: dashboardData.usersCount
+,
+        icon: Users,
+        className: "users",
+      },
+      {
+        title: "Categories",
+        value: dashboardData.categoryCount
+,
+        icon: Tags,
+        className: "categories",
+      },
+      {
+        title: "Coupons",
+        value: dashboardData.couponCount
+,
+        icon: TicketPercent,
+        className: "coupons",
+      },
+      {
+        title: "Orders",
+        value: dashboardData.orderCount
+,
+        icon: ShoppingCart,
+        className: "orders",
+      },
+    ];
+  }
 
   return (
     <div className="admin-dashboard">
 
-      {/* Header */}
       <div className="dashboard-header">
         <div>
           <h1>Dashboard</h1>
@@ -100,45 +84,45 @@ const HomeAdmin = () => {
         </div>
       </div>
 
-      {/* Statistics */}
       <div className="dashboard-stats">
 
-        {stats.map((stat) => {
-          const Icon = stat.icon;
+        {!loading ?(
+        stats(dashboardData).map((stat) => {
+        const Icon = stat.icon;
 
-          return (
-            <div
-              className={`dashboard-stat-card ${stat.className}`}
-              key={stat.title}
-            >
+        return (
+          <div
+            className={`dashboard-stat-card ${stat.className}`}
+            key={stat.title}
+          >
 
-              <div className="stat-top">
+            <div className="stat-top">
 
-                <div className="stat-icon">
-                  <Icon size={24} />
-                </div>
-
-                <div className="stat-arrow">
-                  <ArrowUpRight size={18} />
-                </div>
-
+              <div className="stat-icon">
+                <Icon size={24} />
               </div>
 
-              <div className="stat-content">
-
-                <span className="stat-title">
-                  {stat.title}
-                </span>
-
-                <strong className="stat-value">
-                  {stat.value}
-                </strong>
-
+              <div className="stat-arrow">
+                <ArrowUpRight size={18} />
               </div>
 
             </div>
-          );
-        })}
+
+            <div className="stat-content">
+
+              <span className="stat-title">
+                {stat.title}
+              </span>
+
+              <strong className="stat-value">
+                {stat.value}
+              </strong>
+
+            </div>
+
+          </div>
+        );
+      })) : 'loading .....'}
 
       </div>
 

@@ -1,21 +1,22 @@
-import {  createContext, useContext, useState } from "react";
+import {  createContext, useCallback, useContext, useState } from "react";
 import { addCouponApi, deleteCouponApi, editCouponApi, getCoupons, getSingleCouponApi } from "../api/coupon.api";
 
 export const CouponContext = createContext(null);
 
 
 export const CouponProvider = ({ children }) => {
-    const [coupon , setCoupon]= useState([])
+    const [coupons , setCoupons]= useState([])
+    const [coupon , setCoupon]= useState({})
     const [loading , setLoading] = useState(false)
     const [error, setError] = useState(null)
     
-    const getAllCoupons = async () => {
+    const getAllCoupons = useCallback( async () => {
     
         try {
           setLoading(true);
           setError(null);
           const response = await getCoupons();
-          setCoupon(response.data.Coupon);
+          setCoupons(response.data.data);
           return response.data;
         } catch (error) {
           const message =
@@ -28,15 +29,15 @@ export const CouponProvider = ({ children }) => {
         } finally {
           setLoading(false);
         }
-    };
+    },[]);
     
-    const addCoupon = async (data) => {
+    const addCoupon = useCallback( async (data) => {
     
         try {
           setLoading(true);
           setError(null);
           const response = await addCouponApi(data);
-          setCoupon(response.data.Coupon);
+          setCoupon(response.data.data);
           return response.data;
         } catch (error) {
           const message =
@@ -49,15 +50,15 @@ export const CouponProvider = ({ children }) => {
         } finally {
           setLoading(false);
         }
-    };
+    },[]);
     
-    const editCoupon = async (id ,data) => {
+    const editCoupon = useCallback( async (id ,data) => {
     
         try {
           setLoading(true);
           setError(null);
           const response = await editCouponApi(id,data);
-          setCoupon(response.data.Coupon);
+          setCoupon(response.data.data);
           return response.data;
         } catch (error) {
           const message =
@@ -70,14 +71,14 @@ export const CouponProvider = ({ children }) => {
         } finally {
           setLoading(false);
         }
-    };
-    const getSingleCoupon = async (id ) => {
+    },[]);
+    const getSingleCoupon = useCallback( async (id ) => {
     
         try {
           setLoading(true);
           setError(null);
           const response = await getSingleCouponApi(id);
-          setCoupon(response.data.Coupon);
+          setCoupon(response.data.data);
           return response.data;
         } catch (error) {
           const message =
@@ -90,15 +91,15 @@ export const CouponProvider = ({ children }) => {
         } finally {
           setLoading(false);
         }
-    };
+    },[]);
     
-    const deleteCoupon = async (id ) => {
+    const deleteCoupon = useCallback( async (id ) => {
     
         try {
           setLoading(true);
           setError(null);
           const response = await deleteCouponApi(id);
-          setCoupon(response.data.Coupon);
+          setCoupon(response.data.data);
           return response.data;
         } catch (error) {
           const message =
@@ -111,14 +112,15 @@ export const CouponProvider = ({ children }) => {
         } finally {
           setLoading(false);
         }
-    };
+    },[]);
     
 
     return (
         <CouponContext.Provider
             value={{
                 coupon,
-                loading,
+          loading,
+                coupons ,
                 deleteCoupon,
                 editCoupon,
                 addCoupon,

@@ -206,7 +206,7 @@ const Sidebar = ({
             className="admin-logout-btn"
             onClick={async () => {
               await logout()
-              navigation('/auth')
+              navigation('/')
             }}
           >
 

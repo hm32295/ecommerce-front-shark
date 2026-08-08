@@ -1,4 +1,4 @@
-import { useNavigate, useParams } from "react-router-dom";
+import {  useParams } from "react-router-dom";
 import { useCategory } from "../../../context/CategoryContext";
 import { useEffect, useState } from "react";
 import AdminDetails from "../../../component/admin/AdminDetails/AdminDetails";
@@ -7,25 +7,21 @@ const CategoryDetails = () => {
 
   const { id } = useParams();
 
-  const navigate = useNavigate();
-    const {getSingleCategory,loading} = useCategory()
-    const [category, setCategory] = useState(null);
+    const {getSingleCategory,category,loading} = useCategory()
 
 
-  const handelCategory = async () => {
-      try {
-          const response = await getSingleCategory(id);
-            setCategory(response.data);
-        } catch (error) {
-        console.log(error);
-        } 
-
-  };
-
-
-  useEffect(() => {
+    
+    
+    useEffect(() => {
+    const handelCategory = async () => {
+        try {
+            await getSingleCategory(id);
+          } catch (error) {
+          console.log(error);
+          } 
+    };
     handelCategory();
-  }, []);
+  }, [getSingleCategory ,id]);
 
 
   return (

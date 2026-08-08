@@ -1,6 +1,7 @@
 
 import {
   createContext,
+  useCallback,
   useContext,
   useState,
 } from "react";
@@ -11,6 +12,7 @@ const ProductContext = createContext(null);
 
 export const ProductProvider = ({ children }) => {
 
+  const [products, setProducts] = useState(null);
   const [product, setProduct] = useState(null);
 
   const [loading, setLoading] = useState(true);
@@ -18,13 +20,13 @@ export const ProductProvider = ({ children }) => {
   const [error, setError] = useState(null);
 
 
-  const getProducts = async (params) => {
+  const getProducts =useCallback (async (params) => {
 
     try {
       setLoading(true);
       setError(null);
       const response = await getAllProduct(params);
-      setProduct(response.data.user);
+      setProducts(response.data.data);
       return response.data;
     } catch (error) {
       const message =
@@ -39,15 +41,16 @@ export const ProductProvider = ({ children }) => {
       setLoading(false);
 
     }
-  };
+  },[]);
 
 
-  const addProducts = async (data) => {
+  const addProducts =useCallback (async (data) => {
 
     try {
       setLoading(true);
       setError(null);
       const response = await addProduct(data);
+      setProduct(response.data.data)
       return response.data;
     } catch (error) {
       const message =
@@ -63,15 +66,14 @@ export const ProductProvider = ({ children }) => {
       setLoading(false);
 
     }
-  };
+  },[]);
 
-
-  const getOneProduct = async (id) => {
+  const getOneProduct =useCallback( async (id) => {
 
     try {
       setLoading(true);
       const response = await getSingleProduct(id);
-      setProduct(null);
+      setProduct(response.data.data);
       return response.data
     } catch (error) {
       console.log(
@@ -82,13 +84,13 @@ export const ProductProvider = ({ children }) => {
     } finally {
       setLoading(false);
     }
-  };
-  const editOneProduct = async (id,data) => {
+  },[]);
+  const editOneProduct = useCallback(async (id,data) => {
 
     try {
       setLoading(true);
-      await editProduct(id,data);
-      setProduct(null);
+      const response = await editProduct(id,data);
+      setProduct(response.data.data);
     } catch (error) {
       console.log(
         "forget Password error:",
@@ -100,14 +102,14 @@ export const ProductProvider = ({ children }) => {
       setLoading(false);
 
     }
-  };
+  },[]);
 
-  const deleteOneProduct = async (id) => {
+  const deleteOneProduct =useCallback( async (id) => {
 
     try {
       setLoading(true);
-      await deleteProduct(id);
-      setProduct(null);
+      const response = await deleteProduct(id);
+      setProduct(response.data.data);
     } catch (error) {
       console.log(
         "verify error:",
@@ -117,13 +119,14 @@ export const ProductProvider = ({ children }) => {
     } finally {
       setLoading(false);
     }
-  };
+  },[]);
 
 
   return (
     <ProductContext.Provider
       value={{
         product,
+        products,
         deleteOneProduct,
         editOneProduct,
         getOneProduct,
