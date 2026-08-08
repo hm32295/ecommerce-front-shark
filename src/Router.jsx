@@ -156,8 +156,7 @@ const myRouter = createBrowserRouter([
     path: '/',
     element :<AuthLayout />,
     children: [
-      
-
+    
         {
           index: true,
           element: <Login />,

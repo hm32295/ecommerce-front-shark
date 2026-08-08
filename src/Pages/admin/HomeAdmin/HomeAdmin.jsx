@@ -9,7 +9,7 @@ import {
   ArrowUpRight,
 } from "lucide-react";
 
-import "./HomeAdmin.css";
+import "./homeAdmin.css";
 import { useEffect } from "react";
 import { useUsers } from "../../../context/UsersContext";
 
