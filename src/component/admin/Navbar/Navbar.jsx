@@ -1,13 +1,26 @@
 
+import { jwtDecode } from "jwt-decode";
 import {
   Menu,
   Bell,
   Search,
   UserCircle,
 } from "lucide-react";
+import { useEffect, useState } from "react";
 
 const Navbar = ({ onMenuClick }) => {
 
+  const [user, setUser] = useState({})
+  
+  const handelToken = () => {
+    const decoded = jwtDecode((localStorage.getItem('token')));
+    // console.log(decoded);
+    
+    setUser(decoded)
+  }
+  useEffect(() => {
+    handelToken()
+  },[])
   return (
     <nav className="admin-navbar">
 
@@ -39,30 +52,9 @@ const Navbar = ({ onMenuClick }) => {
       </div>
 
 
-      {/* Search */}
-      <div className="admin-search d-none d-md-flex">
-
-        <Search size={18} />
-
-        <input
-          type="text"
-          placeholder="Search..."
-        />
-
-      </div>
-
-
+  
       {/* Right */}
       <div className="d-flex align-items-center gap-2">
-
-        {/* Notification */}
-        <button className="admin-icon-btn">
-
-          <Bell size={20} />
-
-          <span className="notification-dot" />
-
-        </button>
 
 
         {/* User */}
@@ -75,11 +67,11 @@ const Navbar = ({ onMenuClick }) => {
           <div className="d-none d-sm-block">
 
             <div className="admin-user-name">
-              Admin
+              {user?.name ? user.name : 'nuKnown'}
             </div>
 
             <div className="admin-user-role">
-              Administrator
+              {user?.role ? user.role: "Administrator"}
             </div>
 
           </div>

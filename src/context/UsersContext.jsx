@@ -1,5 +1,6 @@
 import {  createContext, useContext, useState } from "react";
 import { blockUserApi, getAllUsersApi, getSingleUserApi } from "../api/users.api";
+import { dashboardApi } from "../api/dashboard.api";
 
 export const UsersContext = createContext(null);
 
@@ -8,6 +9,26 @@ export const UsersProvider = ({ children }) => {
     const [users , setUsers] = useState([])
     const [loading , setLoading] = useState(false)
     const [error, setError] = useState(null)
+    
+    const dashboard = async () => {
+    
+        try {
+          setLoading(true);
+          setError(null);
+          const response = await dashboardApi();
+          return response.data;
+        } catch (error) {
+          const message =
+            error.response?.data?.message ||
+            "Failed to fetch dashboard";
+          setError(message);
+    
+          throw error;
+    
+        } finally {
+          setLoading(false);
+        }
+    };
     
     const getAllUsers = async () => {
     
@@ -79,7 +100,8 @@ export const UsersProvider = ({ children }) => {
             value={{
                 users,
                 loading,
-                getAllUsers,
+          getAllUsers,
+                dashboard,
                 getOneUsers,
                 error,
                 blockUser

@@ -10,6 +10,7 @@ const Login = () => {
 
   const { login } = useAuth();
   const handleLogin = async (data) => {
+    
     try {
       const response = await login({ email: data.email, password: data.password, });
       localStorage.setItem('token' , response.data.token)
