@@ -37,11 +37,11 @@ const Sidebar = ({
       icon: Package,
     },
 
-    {
-      title: "Orders",
-      path: "/admin/orders",
-      icon: ShoppingBag,
-    },
+    // {
+    //   title: "Orders",
+    //   path: "/admin/orders",
+    //   icon: ShoppingBag,
+    // },
 
     {
       title: "Users",

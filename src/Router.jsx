@@ -1,6 +1,6 @@
 import { createBrowserRouter } from "react-router-dom";
 
-
+// Auth
 import AuthLayout from "./Pages/auth/AuthLayout/AuthLayout";
 import Login from "./Pages/auth/login/Login";
 import Verify from "./Pages/auth/Verify/Verify";
@@ -8,6 +8,7 @@ import Reset from "./Pages/auth/reset/Reset";
 import Register from "./Pages/auth/register/Register";
 import ForgetPassword from "./Pages/auth/ForgetPassword/ForgetPassword";
 
+// Admin
 import Users from "./Pages/admin/Users/Users";
 import Category from "./Pages/admin/Category/Category";
 import Coupon from "./Pages/admin/Coupon/Coupon";
@@ -29,141 +30,28 @@ import AddCoupon from "./Pages/admin/Coupon/AddCoupon";
 import EditCoupon from "./Pages/admin/Coupon/EditCoupon";
 import CouponDetails from "./Pages/admin/Coupon/CouponDetails";
 
+// Routes
 import ProductRoute from "./Routes/ProductRoute";
 import ErrorPage from "./Pages/ErrorPage/ErrorPage";
+import UserRedirect from "./validation/UserRedirect";
 
 
 const myRouter = createBrowserRouter([
+  
+  // Login
 
   {
-    path: "/admin",
-
-    element: <ProductRoute />,
-
-    children: [
-
-      {
-        element: <AdminLayout />,
-
-        children: [
-
-          {
-            index: true,
-            element: <HomeAdmin />,
-          },
-
-          {
-            path: "home",
-            element: <HomeAdmin />,
-          },
-
-
-
-          {
-            path: "users",
-            element: <Users />,
-          },
-
-          {
-            path: "users/:id",
-            element: <UsersDetails />,
-          },
-
-
-
-          {
-            path: "products",
-            element: <Product />,
-          },
-
-          {
-            path: "products/add",
-            element: <AddProducts />,
-          },
-
-          {
-            path: "products/edit/:id",
-            element: <EditProduct />,
-          },
-
-          {
-            path: "products/:id",
-            element: <ProductDetails />,
-          },
-
-
-          {
-            path: "categories",
-            element: <Category />,
-          },
-
-          {
-            path: "category/add",
-            element: <AddCategory />,
-          },
-
-          {
-            path: "category/edit/:id",
-            element: <EditCategory />,
-          },
-
-          {
-            path: "category/:id",
-            element: <CategoryDetails />,
-          },
-
-
-          {
-            path: "coupon",
-            element: <Coupon />,
-          },
-
-          {
-            path: "coupon/add",
-            element: <AddCoupon />,
-          },
-
-          {
-            path: "coupon/edit/:id",
-            element: <EditCoupon />,
-          },
-
-          {
-            path: "coupon/:id",
-            element: <CouponDetails />,
-          },
-
-
-          {
-            path: "orders",
-            element: <Coupon />,
-          },
-
-
-          {
-            path: "settings",
-            element: <div>Settings</div>,
-          },
-
-        ],
-      },
-
-    ],
+    path: "/",
+    element: <Login />,
+  },
+  {
+    path: "/user",
+    element: <UserRedirect />,
   },
 
 
-  {
-    path: '/',
-    element :<AuthLayout />,
-    children: [
-    
-        {
-          index: true,
-          element: <Login />,
-        },
-      
-    ]
-},
+  // Authentication
+
   {
     path: "/auth",
     element: <AuthLayout />,
@@ -203,10 +91,130 @@ const myRouter = createBrowserRouter([
   },
 
 
-    {
-        path: "*",
-        element: <ErrorPage />,
-    },
+  // Admin
+
+  {
+    path: "/admin",
+    element: <ProductRoute />,
+
+    children: [
+
+      {
+        element: <AdminLayout />,
+
+        children: [
+
+          {
+            index: true,
+            element: <HomeAdmin />,
+          },
+
+          {
+            path: "home",
+            element: <HomeAdmin />,
+          },
+
+          // Users
+          {
+            path: "users",
+            element: <Users />,
+          },
+
+          {
+            path: "users/:id",
+            element: <UsersDetails />,
+          },
+
+          // Products
+          {
+            path: "products",
+            element: <Product />,
+          },
+
+          {
+            path: "products/add",
+            element: <AddProducts />,
+          },
+
+          {
+            path: "products/edit/:id",
+            element: <EditProduct />,
+          },
+
+          {
+            path: "products/:id",
+            element: <ProductDetails />,
+          },
+
+          // Categories
+          {
+            path: "categories",
+            element: <Category />,
+          },
+
+          {
+            path: "category/add",
+            element: <AddCategory />,
+          },
+
+          {
+            path: "category/edit/:id",
+            element: <EditCategory />,
+          },
+
+          {
+            path: "category/:id",
+            element: <CategoryDetails />,
+          },
+
+          // Coupons
+          {
+            path: "coupon",
+            element: <Coupon />,
+          },
+
+          {
+            path: "coupon/add",
+            element: <AddCoupon />,
+          },
+
+          {
+            path: "coupon/edit/:id",
+            element: <EditCoupon />,
+          },
+
+          {
+            path: "coupon/:id",
+            element: <CouponDetails />,
+          },
+
+          // Orders
+          {
+            path: "orders",
+            element: <Coupon />,
+          },
+
+          // Settings
+          {
+            path: "settings",
+            element: <div>Settings</div>,
+          },
+
+        ],
+      },
+
+    ],
+  },
+
+
+  // 404
+
+  {
+    path: "*",
+    element: <ErrorPage />,
+  },
+
 ]);
+
 
 export default myRouter;
